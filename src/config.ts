@@ -31,6 +31,8 @@ export interface DataSourceTableConfig {
         type: FeatureType;
         name: string;
     }[],
+
+    topic: string,
 }
 
 const DataSourceTableSchema = ObjectSchema.array(ObjectSchema.object({
@@ -40,7 +42,8 @@ const DataSourceTableSchema = ObjectSchema.array(ObjectSchema.object({
     fields: ObjectSchema.array(ObjectSchema.object({
         type: ObjectSchema.string().withEnumeration(['NOMINAL', 'TEXT', 'NUMERIC', 'LOGIC', 'DATE']),
         name: ObjectSchema.string(),
-    }))
+    })),
+    topic: ObjectSchema.optional(ObjectSchema.string()),
 }));
 
 /**
@@ -73,6 +76,10 @@ export class Config {
     public tablesConfig: DataSourceTableConfig[];
 
     public deepintURL: string;
+
+    public mqttURL: string;
+    public mqttUser: string;
+    public mqttPassword: string;
 
     public logEvents: boolean;
     public logDebug: boolean;
@@ -110,6 +117,10 @@ export class Config {
 
 
         this.deepintURL = process.env.DEEPINT_API_URL || "https://app.deepint.net/api/v1/";
+
+        this.mqttURL = process.env.MQTT_URL || "mqtt://localhost";
+        this.mqttUser = process.env.MQTT_USER || "";
+        this.mqttPassword = process.env.MQTT_PASSWORD || "";
 
         const logMode = process.env.LOG_MODE + "";
 

@@ -33,6 +33,8 @@ export interface DataSourceTable {
 
     fields: Feature[];
 
+    topic: string;
+
     updateSem: AsyncSemaphore;
 
     updateQueue: InstanceType[][];
@@ -74,6 +76,8 @@ export class DataSource {
                     };
                 }),
 
+                topic: t.topic || "",
+
                 updateSem: new AsyncSemaphore(0),
                 updateQueue: [],
                 requiredUpdate: false,
@@ -97,6 +101,16 @@ export class DataSource {
     public getTableFromCredentials(pubkey: string, secKey: string): DataSourceTable {
         for (const table of this.tables) {
             if (secureStringCompare(pubkey, table.publicKey) && secureStringCompare(secKey, table.secretKey)) {
+                return table;
+            }
+        }
+
+        return null;
+    }
+
+    public getTableFromTopic(topic: string): DataSourceTable {
+        for (const table of this.tables) {
+            if (table.topic === topic) {
                 return table;
             }
         }

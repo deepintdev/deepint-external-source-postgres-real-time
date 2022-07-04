@@ -52,6 +52,14 @@ In order to configure the source, set the following variables:
 | PG_MAX_CONNECTIONS | Max connections in the Postgre connection pool. |
 | TABLE_MAPPING_FILE | Path to the tables mapping file. Explained below. |
 
+For MQTT real-time inserts, configure the following variables:
+
+| Variable Name | Description |
+|---|---|
+| MQTT_URL | Connection URL for MQTT server. Example: `mqtt://test.mosquitto.org` |
+| MQTT_USER | Username for MQTT authentication (if required) |
+| MQTT_PASSWORD | password for MQTT authentication (if required) |
+
 In order to configure the table mapping rules, create a JSON file and set its path into the `TABLE_MAPPING_FILE` variable.
 
 The tables mapping file contains an array with the following structure:
@@ -68,7 +76,17 @@ The tables mapping file contains an array with the following structure:
             "name": "Feature name. Name of the field in the database",
             "type": "Feature type. Can be: NOMINAL, NUMERIC, LOGIC, DATE or TEXT"
         ],
+
+        "topic": "Name of the MQTT topic to subscribe to."
     }
 ]
 ```
+
+For each table you can set a MQTT topic in order to listen for new instances. Those instances are expected as JSON objects, being the keys the names of the fields. Example:
+
+```json
+{"sepallength":6.9,"sepalwidth":3.1,"petallength":5.1,"petalwidth":2.3,"species":"virginica"}
+```
+
+
 
