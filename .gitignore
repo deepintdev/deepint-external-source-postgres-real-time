@@ -12,6 +12,7 @@ dist
 
 temp
 
-# Ignore .env
+# Ignore .env and config
 
 .env
+tables.json

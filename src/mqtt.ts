@@ -97,5 +97,7 @@ export class RealTimeController {
         const instances = DataSource.getInstance().sanitizeInstances(table, [msgJson]);
 
         await DataSource.getInstance().pushInstances(table, instances);
+
+        DataSource.getInstance().noticeUpdate(table);
     }
 }

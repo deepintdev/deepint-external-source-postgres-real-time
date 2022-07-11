@@ -236,7 +236,7 @@ export class DataSource {
 
 
     private async pushInstance(table: DataSourceTable, instance: InstanceType[]): Promise<void> {
-        let sentence = "INSERT INTO \"" + table + "\"(";
+        let sentence = "INSERT INTO \"" + table.table + "\"(";
         const sqlKeys = [];
         const values = [];
         const qm = [];

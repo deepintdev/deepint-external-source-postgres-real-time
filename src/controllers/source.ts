@@ -38,10 +38,14 @@ export class StatusController extends Controller {
      */
     public index(request: Express.Request, response: Express.Response) {
         const table = this.checkAuth(request);
-        if (!table) {
+        if (!table && !request.headers["x-public-key"]) {
             if (Config.getInstance().apiDocs) {
                 return response.redirect("/api-docs");
             }
+            response.status(401);
+            response.end();
+            return;
+        } else if (!table) {
             response.status(401);
             response.end();
             return;

@@ -6,7 +6,7 @@
 -- Creation of tables
 
 DROP TABLE IF EXISTS "iris";
-CREATE TABLE "iris" ("sepallength" DOUBLE, "sepalwidth" DOUBLE, "petallength" DOUBLE, "petalwidth" DOUBLE, "species" VARCHAR(255));
+CREATE TABLE "iris" ("sepallength" REAL, "sepalwidth" REAL, "petallength" REAL, "petalwidth" REAL, "species" VARCHAR(255));
 
 -- Data INSERTS
 
