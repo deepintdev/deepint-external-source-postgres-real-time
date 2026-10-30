@@ -116,7 +116,7 @@ export class Config {
         }
 
 
-        this.deepintURL = process.env.DEEPINT_API_URL || "https://app.deepint.net/api/v1/";
+        this.deepintURL = process.env.AIRCORE_API_URL || process.env.DEEPINT_API_URL || "https://app.air-core.io/api/v1/";
 
         this.mqttURL = process.env.MQTT_URL || "mqtt://localhost";
         this.mqttUser = process.env.MQTT_USER || "";
