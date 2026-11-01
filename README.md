@@ -1,6 +1,8 @@
 # AIR-Core External source: PostgreSQL + MQTT
 
-This is an [AIR-Core](https://app.air-core.io) (formerly Deep Intelligence) external source manager based on PostgreSQL for data storage and MQTT for real-time data fetching.
+This is an [AIR-Core](https://app.air-core.io) external source manager based on PostgreSQL for data storage and MQTT for real-time data fetching.
+
+AIR-Core is the data and AI platform maintained by [AIR Institute](https://air-institute.com).
 
 ## Installation
 
